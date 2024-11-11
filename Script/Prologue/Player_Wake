@@ -1,0 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Player_Wake : MonoBehaviour
+{
+    public GameObject Player;//페이드 아웃->어두워질거임
+    public GameObject talk;//페이드 아웃->어두워질거임
+    public GameObject sleep;//페이드 아웃->어두워질거임
+
+    private void Start()
+    {
+        StartCoroutine(Sleep());//대사 후 컨트롤러 나올 시간을 벌기 위해 만든 거
+        IEnumerator Sleep()//대사 후 컨트롤러 생성위해 만든 함수
+        {
+
+            yield return new WaitForSeconds(3.0f);//2초 후에 컨트롤러를 불러온다
+            sleep.SetActive(false);
+
+
+        }
+
+        StartCoroutine(WakeUp());//대사 후 컨트롤러 나올 시간을 벌기 위해 만든 거
+        IEnumerator WakeUp()//대사 후 컨트롤러 생성위해 만든 함수
+        {
+
+            yield return new WaitForSeconds(3.0f);//2초 후에 컨트롤러를 불러온다
+            Player.SetActive(true);
+            sleep.SetActive(false);
+
+
+        }
+
+        StartCoroutine(LetsTalk());//대사 후 컨트롤러 나올 시간을 벌기 위해 만든 거
+        IEnumerator LetsTalk()//대사 후 컨트롤러 생성위해 만든 함수
+        {
+
+            yield return new WaitForSeconds(3.5f);//2초 후에 컨트롤러를 불러온다
+
+            talk.SetActive(true);
+            sleep.SetActive(false);
+
+        }
+    }
+    
+
+    
+
+}
